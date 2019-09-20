@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">Vista Listar Roles</title>
+</head>
+
+<body>
+    <div class="container" th:fragment="content">
+        <h1 class="text-center mt-2 mb-2">Listado de Roles</h1>
+        <h1 th:if="${items.size()==0}" style="margin-top: 35px; text-align: center;">No hay datos para mostrar</h1>
+        
+        <div style="text-align: right">
+            <button href="#myModal" type="button" class="btn btn-primary col-1" data-toggle="modal" data-target="#myModal">Nuevo</bu>
+        </div>
+
+        <table class="table" id="datos" th:if="${items.size()>0}" style="color: black; text-align: center; width: 100%">
+            <thead>
+                <tr>
+                    <th>Rol</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="i:${items}">
+                    <td th:text="${i.nombreRol}"></td>
+                    <td>
+                        <form action="rol" method="post">
+                            <input type="hidden" name="option" value="actualizar">
+                            <input type="hidden" name="idRol" value="${i.idRol}">
+                            <input type="hidden" name="nombreRol" value="${i.nombreRol}">
+                            <input type="submit" value="Editar" class="btn btn-success col-3">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="vistaEliminar" method="post">
+                            <input type="hidden" name="option" value="eliminar">
+                            <input type="hidden" name="idRol" th:value="${i.idRol}">
+                            <input type="hidden" name="nombreRol" th:value="${i.nombreRol}">
+                            <input type="submit" value="Eliminar" class="btn btn-danger col-3">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<div th:include="componentes/footer::footer"></div>-->
+
+    <!--MODAL-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+    
+                    <!--MODAL HEADER-->
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="myModal">Agregar Rol</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+    
+                    <!--MODAL BODY-->
+                    <div class="modal-body">
+                        <form action="/rol/agregar" method="post" class="offset-2">
+                            <div class="form-group row">
+                                <label class="col-1 offset-2">
+                                    <h3>Rol:</h3>
+                                </label>
+                                <input type="text" class="form-control col-4 " id="rol" name="nombreRol" autocomplete="off">
+                            </div>
+    
+                            <div class="col-11 modal-footer">
+                                <input type="submit" class="btn btn-success col-2 offset-2" value="Guardar">
+                                <input class="btn btn-primary col-2" type="reset" value="Limpiar">
+                                <a class="btn btn-danger col-2" href="/rol/index" role="button">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

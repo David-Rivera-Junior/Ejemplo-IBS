@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="componentes/assets::assets">
+<meta charset="ISO-8859-1">
+<title>Actualizar Rol</title>
+</head>
+<body class="container-fluid">
+        <h1 class="text-center mt-fixed-nav" style="margin-top: 35px;">Actualizar Rol</h1>
+
+        <section>
+                <form th:action="@{/rol/actualizar}" method="post">
+
+                         <section class="form-group row">
+                             <label  class="col-2"><h3>Rol:</h3></label>
+                             <input type="hidden" class="form-control col-10" th:value="${idRol}" name="idRol">
+                             <input type="text" class="form-control col-8" value="${nombreRol}" name="nombreRol" autocomplete="off">
+                         </section >  
+
+                     <input type="submit" class="btn btn-outline-success col-2 offset-4" value="Guardar">
+                     <input type="reset" class="btn btn-outline-danger col-2" value="Limpiar">
+              </form>
+        </section>
+</body>
+</html>

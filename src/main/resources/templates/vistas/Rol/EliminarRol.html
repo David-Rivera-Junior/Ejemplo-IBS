@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">Vista Eliminar Rol</title>
+</head>
+
+<body>
+    <div class="container" th:fragment="content">
+        <h1 class="text-center mt-fixed-nav" style="margin-top: 35px;">Eliminar Rol</h1>
+
+        <form th:action="@{/rol/eliminar}" method="post">
+
+            <input type="hidden" name="idRol" th:value="${idRol}">
+            <section class='alert alert-danger col-8 offset-2 text-center' role='alert' id='alerta'>
+                <h3 th:text="|Desea eliminar el Rol  ${nombreRol}?|"></h3>
+            </section>
+
+            <form method="get" action="index" class="mt-5">
+                <input type="submit" class="col-1 btn btn-danger" value="Eliminar" style="text-align: center">
+            </form>
+        </form>
+    </div>
+</body>
+
+</html>
