@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.math.BigInteger;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -40,12 +40,12 @@ public class Producto implements Serializable {
 	private String presentacion;
 
 	//bi-directional many-to-one association to Comprasproducto
-	@OneToMany(mappedBy="productos", fetch=FetchType.EAGER)
-	private Set<Comprasproducto> comprasproductos;
+	@OneToMany(mappedBy="productos", fetch=FetchType.LAZY)
+	private List<Comprasproducto> comprasproductos;
 
 	//bi-directional many-to-one association to Inventariosproducto
-	@OneToMany(mappedBy="productos", fetch=FetchType.EAGER)
-	private Set<Inventariosproducto> inventariosproductos;
+	@OneToMany(mappedBy="productos", fetch=FetchType.LAZY)
+	private List<Inventariosproducto> inventariosproductos;
 
 	//bi-directional many-to-one association to Categoria
 	@ManyToOne
@@ -58,8 +58,8 @@ public class Producto implements Serializable {
 	private Marca marcas;
 
 	//bi-directional many-to-one association to Ventasproducto
-	@OneToMany(mappedBy="productos", fetch=FetchType.EAGER)
-	private Set<Ventasproducto> ventasproductos;
+	@OneToMany(mappedBy="productos", fetch=FetchType.LAZY)
+	private List<Ventasproducto> ventasproductos;
 
 	public Producto() {
 	}
@@ -144,11 +144,11 @@ public class Producto implements Serializable {
 		this.presentacion = presentacion;
 	}
 
-	public Set<Comprasproducto> getComprasproductos() {
+	public List<Comprasproducto> getComprasproductos() {
 		return this.comprasproductos;
 	}
 
-	public void setComprasproductos(Set<Comprasproducto> comprasproductos) {
+	public void setComprasproductos(List<Comprasproducto> comprasproductos) {
 		this.comprasproductos = comprasproductos;
 	}
 
@@ -166,11 +166,11 @@ public class Producto implements Serializable {
 		return comprasproducto;
 	}
 
-	public Set<Inventariosproducto> getInventariosproductos() {
+	public List<Inventariosproducto> getInventariosproductos() {
 		return this.inventariosproductos;
 	}
 
-	public void setInventariosproductos(Set<Inventariosproducto> inventariosproductos) {
+	public void setInventariosproductos(List<Inventariosproducto> inventariosproductos) {
 		this.inventariosproductos = inventariosproductos;
 	}
 
@@ -204,11 +204,11 @@ public class Producto implements Serializable {
 		this.marcas = marcas;
 	}
 
-	public Set<Ventasproducto> getVentasproductos() {
+	public List<Ventasproducto> getVentasproductos() {
 		return this.ventasproductos;
 	}
 
-	public void setVentasproductos(Set<Ventasproducto> ventasproductos) {
+	public void setVentasproductos(List<Ventasproducto> ventasproductos) {
 		this.ventasproductos = ventasproductos;
 	}
 

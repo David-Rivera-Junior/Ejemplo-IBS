@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <!-- Barra de menu y navegacion -->
-    <div th:include="/componentes/navbar::navbar"></div>
+    <!-- Barra de menu y navegacion-->
+    <div th:include="/componentes/menu::menu"></div>
 
     <div class="container">
 
         <!-- Fragment generico para el contenido -->
-        <div th:include="this::content"></div>
+        <div th:include="this::content" style="margin-top: 100px" ></div>
 
         <!-- Footer o pie de pagina -->
         <div th:include="/componentes/footer::footer"></div>

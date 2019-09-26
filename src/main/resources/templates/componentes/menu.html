@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+<main th:fragment="menu">
+ <header> <h2 class="ibs">IBS</h2></header>
+        <div class="content-all">
+           
+            <input type="checkbox" id="check">
+            <label for="check" class="icon-menu">Menu</label>
+            
+            <nav class="menu">
+                <ul>
+                    <li>Inicio</li>
+                    <li>Usuarios</li>
+                    <li>Clientes</li>
+                    <li><span class="glyphicon glyphicon-user"><span>Clientes</span></a></li>
+                    <li><a class="ajax-link" href="/rol/index"><i class="glyphicon glyphicon-wrench"></i><span>Roles</span></a></li>
+                    <li>Venta</li>
+                    <li>Desarrollo Web</li>
+                    <li>Cursos</li>
+                    <li>Nosotros</li>
+                    <li>Diseño Web</li>
+                    <li>Contactos</li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>

@@ -2,7 +2,8 @@ package com.ibs.proyecto.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+
+import java.util.List;
 
 
 /**
@@ -19,19 +20,29 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategoria;
 
+	private String nombreCategoria;
+	
 	private String codigoCategoria;
 
-	private String nombreCategoria;
-
 	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="categorias", fetch=FetchType.EAGER)
-	private Set<Producto> productos;
+	@OneToMany(mappedBy="categorias", fetch=FetchType.LAZY)
+	private List<Producto> productos;
 
 	public Categoria() {
 	}
 
-	public Categoria(String nombreCategoria) {
+	public Categoria(String nombreCategoria, String codigoCategoria) {
 		this.nombreCategoria = nombreCategoria;
+		this.codigoCategoria = codigoCategoria;
+	}
+	
+	
+
+	public Categoria(Long idCategoria, String nombreCategoria, String codigoCategoria) {
+		super();
+		this.idCategoria = idCategoria;
+		this.nombreCategoria = nombreCategoria;
+		this.codigoCategoria = codigoCategoria;
 	}
 
 	public Long getIdCategoria() {
@@ -58,11 +69,11 @@ public class Categoria implements Serializable {
 		this.nombreCategoria = nombreCategoria;
 	}
 
-	public Set<Producto> getProductos() {
+	public List<Producto> getProductos() {
 		return this.productos;
 	}
 
-	public void setProductos(Set<Producto> productos) {
+	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="scripts">
+		 <script>
+			//configuracion de data table
+			$(document)
+					.ready(
+							function() {
+								$('#datos')
+										.DataTable(
+												{
+													//agregando todo a idioma espaniol
+													"language" : {
+														"url" : "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+													},
+
+												});
+							});
+		</script> -->
+		 <script>
+		$(document).ready( function () {
+		    $('#datos').DataTable();
+		} );
+		</script>-->
+		<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+		<script>
+		$(document).ready(function () {
+			$('#datos').DataTable();
+			$('.dataTables_length').addClass('bs-select');
+			});
+		</script>
+	</div>-->
+</body>
+</html>

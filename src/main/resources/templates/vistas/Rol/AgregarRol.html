@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">Vista Agregar Rol</title>
+</head>
+
+<body class="container-fluid">
+    <div class="container" th:fragment="content">
+        <h1 class="text-center mt-fixed-nav" style="margin-top: 35px;">AGREGAR ROL</h1>
+        <section>
+            <form action="/rol/agregar" method="post" class="offset-2" id="frmMain">
+                <section class="form-group row" style="text-align: center">
+                    <label class="col-1 offset-2">
+                        <h3>Rol:</h3>
+                    </label>
+                    <input type="text" class="form-control col-4 " id="rol" name="nombreRol" autocomplete="off">
+                </section>
+
+                <div class="col-10">
+                    <input type="submit" class="btn btn-success col-2 offset-4" value="Guardar">
+                    <input class="btn btn-primary col-2" type="reset" value="Limpiar">
+                </div>
+            </form>
+
+        </section>
+    </div>
+    <!--<div th:include="componentes/footer"></div>-->
+</body>
+
+</html>

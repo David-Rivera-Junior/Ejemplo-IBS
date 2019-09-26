@@ -2,7 +2,8 @@ package com.ibs.proyecto.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+
 
 
 /**
@@ -22,13 +23,18 @@ public class Role implements Serializable {
 	private String nombreRol;
 
 	//bi-directional many-to-one association to Usuario
-	@OneToMany(mappedBy="roles", fetch=FetchType.EAGER)
-	private Set<Usuario> usuarios;
+	@OneToMany(mappedBy="roles", fetch=FetchType.LAZY)
+	private List<Usuario> usuarios;
 
 	public Role() {
 	}
 
 	public Role(String nombreRol) {
+		this.nombreRol = nombreRol;
+	}
+
+	public Role(Long idRol, String nombreRol) {
+		this.idRol = idRol;
 		this.nombreRol = nombreRol;
 	}
 
@@ -49,11 +55,11 @@ public class Role implements Serializable {
 		this.nombreRol = nombreRol;
 	}
 
-	public Set<Usuario> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		return this.usuarios;
 	}
 
-	public void setUsuarios(Set<Usuario> usuarios) {
+	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 
@@ -69,6 +75,11 @@ public class Role implements Serializable {
 		usuario.setRoles(null);
 
 		return usuario;
+	}
+
+	public Role get() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/*@Override

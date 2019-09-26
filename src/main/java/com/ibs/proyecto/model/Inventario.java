@@ -2,7 +2,8 @@ package com.ibs.proyecto.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+
 
 
 /**
@@ -34,8 +35,8 @@ public class Inventario implements Serializable {
 	private Venta ventas;
 
 	//bi-directional many-to-one association to Inventariosproducto
-	@OneToMany(mappedBy="inventarios", fetch=FetchType.EAGER)
-	private Set<Inventariosproducto> inventariosproductos;
+	@OneToMany(mappedBy="inventarios", fetch=FetchType.LAZY)
+	private List<Inventariosproducto> inventariosproductos;
 
 	public Inventario() {
 	}
@@ -80,11 +81,11 @@ public class Inventario implements Serializable {
 		this.ventas = ventas;
 	}
 
-	public Set<Inventariosproducto> getInventariosproductos() {
+	public List<Inventariosproducto> getInventariosproductos() {
 		return this.inventariosproductos;
 	}
 
-	public void setInventariosproductos(Set<Inventariosproducto> inventariosproductos) {
+	public void setInventariosproductos(List<Inventariosproducto> inventariosproductos) {
 		this.inventariosproductos = inventariosproductos;
 	}
 

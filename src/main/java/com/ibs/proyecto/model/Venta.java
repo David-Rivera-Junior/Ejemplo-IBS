@@ -4,7 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.math.BigInteger;
-import java.util.Set;
+import java.util.List;
+
 
 
 /**
@@ -34,8 +35,8 @@ public class Venta implements Serializable {
 	private float totalVenta;
 
 	//bi-directional many-to-one association to InventarioController
-	@OneToMany(mappedBy="ventas", fetch=FetchType.EAGER)
-	private Set<Inventario> inventarios;
+	@OneToMany(mappedBy="ventas", fetch=FetchType.LAZY)
+	private List<Inventario> inventarios;
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
@@ -48,8 +49,8 @@ public class Venta implements Serializable {
 	private Usuario usuarios;
 
 	//bi-directional many-to-one association to Ventasproducto
-	@OneToMany(mappedBy="ventas", fetch=FetchType.EAGER)
-	private Set<Ventasproducto> ventasproductos;
+	@OneToMany(mappedBy="ventas", fetch=FetchType.LAZY)
+	private List<Ventasproducto> ventasproductos;
 
 	public Venta() {
 	}
@@ -110,11 +111,11 @@ public class Venta implements Serializable {
 		this.totalVenta = totalVenta;
 	}
 
-	public Set<Inventario> getInventarios() {
+	public List<Inventario> getInventarios() {
 		return this.inventarios;
 	}
 
-	public void setInventarios(Set<Inventario> inventarios) {
+	public void setInventarios(List<Inventario> inventarios) {
 		this.inventarios = inventarios;
 	}
 
@@ -148,11 +149,11 @@ public class Venta implements Serializable {
 		this.usuarios = usuarios;
 	}
 
-	public Set<Ventasproducto> getVentasproductos() {
+	public List<Ventasproducto> getVentasproductos() {
 		return this.ventasproductos;
 	}
 
-	public void setVentasproductos(Set<Ventasproducto> ventasproductos) {
+	public void setVentasproductos(List<Ventasproducto> ventasproductos) {
 		this.ventasproductos = ventasproductos;
 	}
 

@@ -8,4 +8,6 @@ import com.ibs.proyecto.model.Role;
  @Repository
 public interface IRolRepository extends CrudRepository<Role, Long>{
 
+	//Role findAllById(Integer idRol);
+
 }

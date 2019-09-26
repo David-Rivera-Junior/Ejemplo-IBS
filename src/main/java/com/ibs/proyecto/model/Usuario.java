@@ -2,8 +2,7 @@ package com.ibs.proyecto.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
-
+import java.util.List;
 
 /**
  * The persistent class for the usuarios database table.
@@ -18,30 +17,69 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUsuario;
+	
+	private String nombreUsuario;
 
-	private String apellidosUsuario;
-
-	private String contraseña;
-
-	private String correoUsuario;
-
-	private String direccionUsuario;
-
+	private String apellidoUsuario;
+	
 	private String duiUsuario;
-
-	private String nombresUsuario;
-
+	
 	private String telefonoUsuario;
-
+	
+	private String direccionUsuario;
+	
+	private String correoUsuario;
+	
 	private String usuario;
 
+	private String contraseña;
+	
+	
+
+	public Usuario() {
+		
+	}
+	
+	
+
+	public Usuario(Long idUsuario, String nombreUsuario, String apellidoUsuario, String duiUsuario,
+			String telefonoUsuario, String direccionUsuario, String correoUsuario, String usuario, String contraseña) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nombreUsuario = nombreUsuario;
+		this.apellidoUsuario = apellidoUsuario;
+		this.duiUsuario = duiUsuario;
+		this.telefonoUsuario = telefonoUsuario;
+		this.direccionUsuario = direccionUsuario;
+		this.correoUsuario = correoUsuario;
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+	}
+
+
+
+	public Usuario(String nombreUsuario, String apellidoUsuario, String duiUsuario, String telefonoUsuario,
+			String direccionUsuario, String correoUsuario, String usuario, String contraseña) {
+		super();
+		this.nombreUsuario = nombreUsuario;
+		this.apellidoUsuario = apellidoUsuario;
+		this.duiUsuario = duiUsuario;
+		this.telefonoUsuario = telefonoUsuario;
+		this.direccionUsuario = direccionUsuario;
+		this.correoUsuario = correoUsuario;
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+	}
+
+
+
 	//bi-directional many-to-one association to Bitacora
-	@OneToMany(mappedBy="usuarios", fetch=FetchType.EAGER)
-	private Set<Bitacora> bitacoras;
+	@OneToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
+	private List<Bitacora> bitacoras;
 
 	//bi-directional many-to-one association to Compra
-	@OneToMany(mappedBy="usuarios", fetch=FetchType.EAGER)
-	private Set<Compra> compras;
+	@OneToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
+	private List<Compra> compras;
 
 	//bi-directional many-to-one association to Role
 	@ManyToOne
@@ -49,11 +87,8 @@ public class Usuario implements Serializable {
 	private Role roles;
 
 	//bi-directional many-to-one association to Venta
-	@OneToMany(mappedBy="usuarios", fetch=FetchType.EAGER)
-	private Set<Venta> ventas;
-
-	public Usuario() {
-	}
+	@OneToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
+	private List<Venta> ventas;
 
 	public Long getIdUsuario() {
 		return this.idUsuario;
@@ -63,12 +98,12 @@ public class Usuario implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getApellidosUsuario() {
-		return this.apellidosUsuario;
+	public String getApellidoUsuario() {
+		return this.apellidoUsuario;
 	}
 
-	public void setApellidosUsuario(String apellidosUsuario) {
-		this.apellidosUsuario = apellidosUsuario;
+	public void setApellidoUsuario(String apellidoUsuario) {
+		this.apellidoUsuario = apellidoUsuario;
 	}
 
 	public String getContraseña() {
@@ -103,12 +138,12 @@ public class Usuario implements Serializable {
 		this.duiUsuario = duiUsuario;
 	}
 
-	public String getNombresUsuario() {
-		return this.nombresUsuario;
+	public String getNombreUsuario() {
+		return this.nombreUsuario;
 	}
 
-	public void setNombresUsuario(String nombresUsuario) {
-		this.nombresUsuario = nombresUsuario;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getTelefonoUsuario() {
@@ -127,11 +162,11 @@ public class Usuario implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Set<Bitacora> getBitacoras() {
+	public List<Bitacora> getBitacoras() {
 		return this.bitacoras;
 	}
 
-	public void setBitacoras(Set<Bitacora> bitacoras) {
+	public void setBitacoras(List<Bitacora> bitacoras) {
 		this.bitacoras = bitacoras;
 	}
 
@@ -149,11 +184,11 @@ public class Usuario implements Serializable {
 		return bitacora;
 	}
 
-	public Set<Compra> getCompras() {
+	public List<Compra> getCompras() {
 		return this.compras;
 	}
 
-	public void setCompras(Set<Compra> compras) {
+	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
 
@@ -179,11 +214,11 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-	public Set<Venta> getVentas() {
+	public List<Venta> getVentas() {
 		return this.ventas;
 	}
 
-	public void setVentas(Set<Venta> ventas) {
+	public void setVentas(List<Venta> ventas) {
 		this.ventas = ventas;
 	}
 

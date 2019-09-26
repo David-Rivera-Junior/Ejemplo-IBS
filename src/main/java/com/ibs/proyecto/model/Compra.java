@@ -4,8 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.math.BigInteger;
-import java.util.Set;
-
+import java.util.List;
 
 /**
  * The persistent class for the compras database table.
@@ -42,12 +41,12 @@ public class Compra implements Serializable {
 	private Usuario usuarios;
 
 	//bi-directional many-to-one association to Comprasproducto
-	@OneToMany(mappedBy="compras", fetch=FetchType.EAGER)
-	private Set<Comprasproducto> comprasproductos;
+	@OneToMany(mappedBy="compras", fetch=FetchType.LAZY)
+	private List<Comprasproducto> comprasproductos;
 
 	//bi-directional many-to-one association to InventarioController
-	@OneToMany(mappedBy="compras", fetch=FetchType.EAGER)
-	private Set<Inventario> inventarios;
+	@OneToMany(mappedBy="compras", fetch=FetchType.LAZY)
+	private List<Inventario> inventarios;
 
 	public Compra() {
 	}
@@ -116,11 +115,11 @@ public class Compra implements Serializable {
 		this.usuarios = usuarios;
 	}
 
-	public Set<Comprasproducto> getComprasproductos() {
+	public List<Comprasproducto> getComprasproductos() {
 		return this.comprasproductos;
 	}
 
-	public void setComprasproductos(Set<Comprasproducto> comprasproductos) {
+	public void setComprasproductos(List<Comprasproducto> comprasproductos) {
 		this.comprasproductos = comprasproductos;
 	}
 
@@ -138,11 +137,11 @@ public class Compra implements Serializable {
 		return comprasproducto;
 	}
 
-	public Set<Inventario> getInventarios() {
+	public List<Inventario> getInventarios() {
 		return this.inventarios;
 	}
 
-	public void setInventarios(Set<Inventario> inventarios) {
+	public void setInventarios(List<Inventario> inventarios) {
 		this.inventarios = inventarios;
 	}
 

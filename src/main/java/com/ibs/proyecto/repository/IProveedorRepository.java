@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.ibs.proyecto.model.Proveedore;
 
-public interface IProveedorRepository extends CrudRepository<Proveedore, Integer>{
+public interface IProveedorRepository extends CrudRepository<Proveedore, Long>{
 
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,21 +22,56 @@ public class CategoriaController {
 	@GetMapping("/index")
 	public String listarCategoria(Model m) {
 		m.addAttribute("items", cr.findAll());
-		return "vistas/Categoria/ListarCategoria";
-	}
-	
-	@GetMapping("/agregar")
-	public String vistaAgregar() {
-		return "vistas/Rol/AgregarRol";
+		return new String("vistas/Categoria/ListarCategoria");
 	}
 	
 	@PostMapping("/agregar")
-	public String agregarCategoria(@RequestParam String nombreCategoria) {
+	public String agregarCategoria(@RequestParam (value = "nombreCategoria", required = false) String nombreCategoria,
+									@RequestParam (value = "codigoCategoria", required = false) String codigoCategoria) {
 		
-		Categoria c = new Categoria(nombreCategoria);
+		Categoria c = new Categoria(nombreCategoria, codigoCategoria);
 		cr.save(c);
 		
-		return "redirect: /categoria/index";
+		return new String("redirect:/categoria/index");
 	}
 	
+	@PostMapping("/vistaEliminar")
+	public String vistaEliminar(@RequestParam(value = "idCategoria", required = false) Long idCategoria,
+								@RequestParam(value =  "nombreCategoria", required = false) String nombreCategoria, Model m) {
+		
+		m.addAttribute("idCategoria", idCategoria);
+		m.addAttribute("nombreCategoria", nombreCategoria);
+		
+		
+		return new String ("vistas/Categoria/EliminarCategoria");
+	}
+	
+	@PostMapping("/eliminar")
+	public String eliminarCategoria(@RequestParam(value = "idCategoria", required = false) Long idCategoria,
+								@RequestParam(value = "nombreCategoria", required = false) String nombreCategoria) {
+		
+		cr.deleteById(idCategoria);
+		
+		return new String("redirect:/categoria/index");
+	}
+	
+	@GetMapping(value = "/modificar/{idCategoria}")
+	public String vistaModificar(@PathVariable Long idCategoria, Model m) {
+		
+		Categoria c = cr.findById(idCategoria).get();
+		m.addAttribute("item", c);
+		
+		return new String("vistas/Categoria/ModificarCategoria");
+	}
+	
+	@PostMapping(value = "modificar")
+	public String modificar(@RequestParam(value = "idCategoria", required = false) Long idCategoria,
+							 @RequestParam(value = "nombreCategoria", required = false) String nombreCategoria,
+							 @RequestParam(value = "codigoCategoria", required = false) String codigoCategoria) {
+		
+		Categoria c = new Categoria(idCategoria, nombreCategoria, codigoCategoria);
+		cr.save(c);
+		
+		return new String("redirect:/categoria/index");
+	}
 }

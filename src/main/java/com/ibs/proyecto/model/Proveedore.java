@@ -2,7 +2,8 @@ package com.ibs.proyecto.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+
 
 
 /**
@@ -18,24 +19,48 @@ public class Proveedore implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idProveedor;
+	
+	private String nombreProveedor;
 
 	private String apellidoProveedor;
-
-	private String correoProveedor;
+	
+	private String duiProveedor;
 
 	private String direccionProveedor;
 
-	private String duiProveedor;
-
-	private String nombreProveedor;
-
 	private String telefonoProveedor;
+	
+	private String correoProveedor;
 
 	//bi-directional many-to-one association to Compra
-	@OneToMany(mappedBy="proveedores", fetch=FetchType.EAGER)
-	private Set<Compra> compras;
+	@OneToMany(mappedBy="proveedores", fetch=FetchType.LAZY)
+	private List<Compra> compras;
 
 	public Proveedore() {
+	}
+
+	public Proveedore(String nombreProveedor, String apellidoProveedor, String duiProveedor,
+			String direccionProveedor, String telefonoProveedor, String correoProveedor) {
+		super();
+		this.nombreProveedor = nombreProveedor;
+		this.apellidoProveedor = apellidoProveedor;
+		this.duiProveedor = duiProveedor;
+		this.direccionProveedor = direccionProveedor;
+		this.telefonoProveedor = telefonoProveedor;
+		this.correoProveedor = correoProveedor;
+		
+	}
+	
+	
+
+	public Proveedore(Long idProveedor, String nombreProveedor, String apellidoProveedor, String duiProveedor,
+			String direccionProveedor, String telefonoProveedor, String correoProveedor) {
+		this.nombreProveedor = nombreProveedor;
+		this.apellidoProveedor = apellidoProveedor;
+		this.duiProveedor = duiProveedor;
+		this.direccionProveedor = direccionProveedor;
+		this.telefonoProveedor = telefonoProveedor;
+		this.correoProveedor = correoProveedor; 
 	}
 
 	public Long getIdProveedor() {
@@ -94,11 +119,11 @@ public class Proveedore implements Serializable {
 		this.telefonoProveedor = telefonoProveedor;
 	}
 
-	public Set<Compra> getCompras() {
+	public List<Compra> getCompras() {
 		return this.compras;
 	}
 
-	public void setCompras(Set<Compra> compras) {
+	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
 

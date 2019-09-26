@@ -19,30 +19,30 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCliente;
+	
+	private String nombreCliente;
 
 	private String apellidoCliente;
+	
+	private String direccionCliente;
 
 	private String departamentoCliente;
 
-	private String direccionCliente;
-
 	private String duiCliente;
+	
+	private String nrc;
+	
+	private String nit;
+	
+	private String tipoCliente;
+	
+	private String giro;
+	
+	private String telefonoCliente;
 
 	private Timestamp fechaIngreso;
 
 	private Timestamp fechaModificacion;
-
-	private String giro;
-
-	private String nit;
-
-	private String nombreCliente;
-
-	private String nrc;
-
-	private String telefonoCliente;
-
-	private String tipoCliente;
 
 	//bi-directional many-to-one association to Venta
 	@OneToMany(mappedBy="clientes", fetch=FetchType.EAGER)
@@ -50,6 +50,23 @@ public class Cliente implements Serializable {
 
 	public Cliente() {
 	}
+
+	
+	public Cliente(String nombreCliente, String apellidoCliente, String direccionCliente, String departamentoCliente,
+			String duiCliente, String nrc, String nit, String tipoCliente, String giro, String telefonoCliente) {
+		super();
+		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
+		this.direccionCliente = direccionCliente;
+		this.departamentoCliente = departamentoCliente;
+		this.duiCliente = duiCliente;
+		this.nrc = nrc;
+		this.nit = nit;
+		this.tipoCliente = tipoCliente;
+		this.giro = giro;
+		this.telefonoCliente = telefonoCliente;
+	}
+
 
 	public Long getIdCliente() {
 		return this.idCliente;
